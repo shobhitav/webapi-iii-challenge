@@ -46,7 +46,7 @@ server.post('/api/users',validateUser,(request,response) =>
 server.post('/api/posts', validatePost, (request,response) => 
     {
         const postInfo = request.body;
-
+ console.log(postInfo);
         postDb
         .insert(postInfo)
         .then(posts => response.status(201).json({sucess:true,posts}))
@@ -134,6 +134,7 @@ function validatePost(req,res,next) {
     res.status(400).json({ message: "missing post data" });
   } else {
     if(req.body.text) {
+      // console.log(postInfo);
       next();
     } else {
       res.status(400).json({ message: "missing required text field" });
